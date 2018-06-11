@@ -9,7 +9,11 @@ class PoemsController < ApplicationController
   
   def create
     @poem = Poem.create(poem_params)
-    redirect_to poem_path(@poem)
+    if @poem.valid?
+      redirect_to poem_path(@poem)
+    else
+      redirect_to root_path
+    end
   end
   
   def show
